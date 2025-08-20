@@ -1,6 +1,8 @@
 # manandarji_sigai_tasks
 Task 3: A digital lock system using Arduino, a  breadboard, and 4 pushbuttons
+
 Code:
+
 const int buttonPins[4] = {2, 3, 4, 5};  // Pushbuttons
 const int greenLED = 8;
 const int redLED = 9;
