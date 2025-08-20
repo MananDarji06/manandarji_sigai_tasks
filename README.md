@@ -38,46 +38,91 @@ void setup() {
 
 void loop() {
 
+
+ 
   for (int i = 0; i < 4; i++) {
+ 
     if (digitalRead(buttonPins[i]) == HIGH) {
+ 
       entered[index] = i + 1;   // Button 1 → digit 1, etc.
+ 
       Serial.print("Pressed: ");
+  
       Serial.println(i + 1);    // Debugging output
+  
       index++;
+  
       delay(300);               // Debounce
       
+  
       if (index == 4) {
+   
         checkPasscode();
+   
         index = 0;              // Reset for next attempt
+ 
       }
+ 
     }
+
   }
+
 }
 
+
+
 void checkPasscode() {
+
   bool correct = true;
+
   for (int i = 0; i < 4; i++) {
+
     if (entered[i] != passcode[i]) {
+
       correct = false;
+
       break;
+
     }
+
   }
 
+
+
   if (correct) {
+
     Serial.println("Access Granted!");
+
     for (int i = 0; i < 3; i++) {
+
       digitalWrite(greenLED, HIGH);
+
       delay(300);
+
       digitalWrite(greenLED, LOW);
+
       delay(300);
+
     }
-  } else {
+
+  } 
+  
+  else {
+ 
     Serial.println("Access Denied!");
+
     for (int i = 0; i < 3; i++) {
+
       digitalWrite(redLED, HIGH);
+
       delay(300);
+
       digitalWrite(redLED, LOW);
+
       delay(300);
+ 
     }
+ 
   }
+
 }
