@@ -3,7 +3,7 @@ Task 3: A digital lock system using Arduino, a  breadboard, and 4 pushbuttons
 
 Code:
 
-const int buttonPins[4] = {2, 3, 4, 5};  // Pushbuttons
+const int buttonPins[4] = {2, 3, 4, 5};
 
 const int greenLED = 8;
 
@@ -29,7 +29,7 @@ void setup() {
 
   pinMode(redLED, OUTPUT);
 
-  Serial.begin(9600); // For debugging
+  Serial.begin(9600); // Shows I/O in The serial monitor
 
 }
 
@@ -42,11 +42,11 @@ void loop() {
   for (int i = 0; i < 4; i++) {
  
     if (digitalRead(buttonPins[i]) == HIGH) {
-      entered[index] = i + 1;   // Button 1 → digit 1, etc.
+      entered[index] = i + 1;   // input
       Serial.print("Pressed: ");
-      Serial.println(i + 1);    // Debugging output
+      Serial.println(i + 1);    // output
       index++;
-      delay(300);               // Debounce
+      delay(300);              
       if (index == 4) {
         checkPasscode();
         index = 0;              // Reset for next attempt
@@ -57,6 +57,7 @@ void loop() {
 }
 
 
+// Checks if the passcode entered is correct
 
 void checkPasscode() {
 
